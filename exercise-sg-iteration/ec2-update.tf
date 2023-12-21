@@ -1,12 +1,3 @@
-###in the particular region find out all the az is allowed to me
-data "aws_availability_zones" "my_az" {
-  filter {
-    name = "opt-in-status"
-    values = ["opt-in-not-required"]
-  }
-}
-###there will be multiple values this is like an list of values. 
-#once we get the list of value
 resource "aws_instance" "ec2demo" {
 
   ami                    = data.aws_ami.amzlinux2.id 
@@ -19,10 +10,8 @@ resource "aws_instance" "ec2demo" {
   vpc_security_group_ids = [ aws_security_group.allow_http.id ]
   ###refrence=resource+resourcelabel.id 
   associate_public_ip_address = true
-  for_each = toset(data.aws_availability_zones.my_az.names)
-  availability_zone = each.key
   tags = {
-    Name = "for_each_demo-${each.value}"
+    Name = "myec2-instance"
   }
 }
 #ate one sg inside that i wantt to add multiple rule
