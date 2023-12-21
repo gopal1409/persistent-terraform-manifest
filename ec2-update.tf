@@ -8,6 +8,7 @@ resource "aws_instance" "ec2demo" {
   subnet_id              = "subnet-09f995142f08515ea"
   user_data              = file("${path.module}/app/app.sh")
   vpc_security_group_ids = [ aws_security_group.allow_http.id ]
+  ###refrence=resource+resourcelabel.id 
   associate_public_ip_address = true
   tags = {
     Name = "myec2-instance"
