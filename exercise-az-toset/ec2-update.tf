@@ -1,4 +1,4 @@
-/*###in the particular region find out all the az is allowed to me
+###in the particular region find out all the az is allowed to me
 data "aws_availability_zones" "my_az" {
   filter {
     name = "opt-in-status"
@@ -28,4 +28,3 @@ resource "aws_instance" "ec2demo" {
 #ate one sg inside that i wantt to add multiple rule
 ##the above bnlock will create the ec2 instance in aws. 
 ###once create the refrence to the ec2 instance is stored in terraform.tfstate file. 
-*/

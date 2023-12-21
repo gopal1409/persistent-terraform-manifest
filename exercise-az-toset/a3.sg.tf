@@ -1,4 +1,4 @@
-/*locals {
+locals {
   inbound_ports = [80,443,22]
   outbound_ports = [443,1433]
 }
@@ -35,4 +35,3 @@ resource "aws_security_group" "allow_http" {
   
 }
 ##we need to do some iteration
-*/
