@@ -14,6 +14,10 @@ variable "secret_key" {
   sensitive = true 
   default = ""
 }
+variable "cidr" {
+  type = string
+  default = "10.20.20.0/26"
+}
 variable "subnet_cidr_private" {
   type = list(any)
   default = [ "10.20.20.0/28","10.20.20.16/28","10.20.20.32/28" ]
