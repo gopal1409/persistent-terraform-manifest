@@ -1,4 +1,4 @@
-/*##how to deploy an alb in aws. 
+##how to deploy an alb in aws. 
 ##first we will create the target group
 resource "aws_lb_target_group" "front-lb" {
   name     = "tf-example-lb-tg"
@@ -45,4 +45,4 @@ resource "aws_lb" "lb-front" {
   security_groups = [aws_security_group.allow_http.id]
   subnets = [for subnet in aws_subnet.private : subnet.id]
   enable_deletion_protection = false 
-}*/
+}
