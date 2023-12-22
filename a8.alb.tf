@@ -26,5 +26,23 @@ resource "aws_lb_target_group_attachment" "attach-app-servers" {
   port = 80
 }
 ##before we create the lb we need to create a listener
-
+resource "aws_lb_listener" "list-alb" {
+  load_balancer_arn = aws_lb.lb-front.arn 
+  port = "80"
+  protocol = "HTTP"
+  default_action {
+    type = "forward"
+    target_group_arn = aws_lb_target_group.front-lb.arn 
+  }
+  
+}
 ###create teh load balancer
+
+resource "aws_lb" "lb-front" {
+  name = "mylb"
+  internal = false 
+  load_balancer_type = "application"
+  security_groups = [aws_security_group.allow_http.id]
+  subnets = [for subnet in aws_subnet.private : subnet.id]
+  enable_deletion_protection = false 
+}
