@@ -9,7 +9,7 @@ resource "aws_vpc" "this" {
 
 ##once we create vpc we will create subnet
 resource "aws_subnet" "private" {
-  count = length(var.subnet_cidr_private)
+  count = length(var.subnet_cidr_private) #whole number 2
   vpc_id = aws_vpc.this.id 
   cidr_block = var.subnet_cidr_private[count.index]
   availability_zone = var.availability_zone[count.index]
