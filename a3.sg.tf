@@ -1,12 +1,13 @@
-/*locals {
+locals {
   inbound_ports = [80,443,22]
-  outbound_ports = [443,1433]
+  #add port 80 as outbound
+  outbound_ports = [0]
 }
 resource "aws_security_group" "allow_http" {
   name        = "webserver"
   description = "security group for webserver"
   ##3put your own vpc id
-  vpc_id      = "vpc-0a06519def51edc94"
+  vpc_id      = aws_vpc.this.id
 
   dynamic "ingress" {
     for_each = local.inbound_ports 
@@ -25,7 +26,7 @@ resource "aws_security_group" "allow_http" {
     content {
     from_port        = egress.value
     to_port          = egress.value
-    protocol         = "tcp"
+    protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]  
     }
@@ -35,4 +36,3 @@ resource "aws_security_group" "allow_http" {
   
 }
 ##we need to do some iteration
-*/
